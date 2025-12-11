@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Interativo - BELO VIDRO</title>
-    <link rel="stylesheet" href="style.css">
-    </head>
+    <link rel="stylesheet" href="style.css"> 
+</head>
 <body>
 
     <header class="main-header">
@@ -27,11 +27,9 @@
     <main class="catalog-container">
         <section class="visualizer-panel">
             <h2>Visualização do Produto</h2>
+            
             <div id="product-display" class="product-display">
-                <img id="layer-base" src="" alt="Imagem base do produto" class="product-layer base-layer">
-                <img id="layer-vidro" src="" alt="Camada de vidro" class="product-layer glass-layer">
-                <img id="layer-aluminio" src="" alt="Camada de alumínio" class="product-layer aluminum-layer">
-                <img id="layer-puxador" src="" alt="Camada de puxador" class="product-layer handle-layer">
+                <img id="layer-base" src="" alt="Produto Selecionado" class="product-layer">
             </div>
 
             <div class="specs-summary">
@@ -39,30 +37,20 @@
                 <p>Modelo: <span id="spec-modelo">Aguardando Seleção...</span></p>
                 <p>Acabamento: <span id="spec-acabamento">N/A</span></p>
                 <p>Cor Alumínio: <span id="spec-cor-aluminio">N/A</span></p>
-                </div>
+                <p>Cor Vidro: <span id="spec-cor-vidro">N/A</span></p>
+            </div>
         </section>
 
         <aside class="controls-panel">
             <h2>Opções de Configuração</h2>
             
             <div id="controls-area">
-                <div class="control-group">
-                    <label for="select-modelo">Selecione o Modelo:</label>
-                    <select id="select-modelo"></select>
                 </div>
-
-                <div class="control-group" id="controls-portas">
-                    <div class="control-item">
-                        <label>Cor do Alumínio:</label>
-                        <div id="options-cor-aluminio" class="option-buttons"></div>
-                    </div>
-                </div>
-                
-            </div>
         </aside>
     </main>
 
-    <script src="data.json"></script>
+    <script src="data_swap.json"></script>
     <script src="app.js"></script>
-    </body>
+    
+</body>
 </html>

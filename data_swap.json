@@ -1,0 +1,44 @@
+{
+  "categorias": {
+    "portas": [
+      {
+        "id": "porta-001",
+        "nome": "Porta de Giro Slim",
+        "acabamento": "Liso Fosco",
+        
+        "opcoes": {
+            "cores_aluminio": ["branco", "preto", "Fosco"],
+            "cores_vidro": ["incolor", "fume", "verde","refletivo"]
+        },
+        
+        "combinacoes": [
+             {
+                "aluminio": "branco",
+                "vidro": "incolor",
+                "path": "assets/img/portas/slim/branco_incolor.jpg" 
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "fume",
+                "path": "assets/img/portas/slim/branco_fume.jpg"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "verde",
+                "path": "assets/img/portas/slim/branco_verde.jpg"
+            },
+          
+            {
+                "aluminio": "branco",
+                "vidro": "refletivo",
+                "path": "assets/img/portas/slim/branco_refletivo.jpg"
+            }
+        ]
+      }
+
+    ],
+    
+    "janelas": [],
+    "boxes": []
+  }
+}

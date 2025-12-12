@@ -73,6 +73,7 @@ function populateLandingFilters() {
                 currentCategory = cat;
                 document.getElementById('landing').classList.add('hidden');
                 document.getElementById('catalog').classList.remove('hidden');
+                document.getElementById('toggle-controls').classList.remove('hidden');
                 initializeCatalog(cat);
 
                 setTimeout(() => {
@@ -98,6 +99,7 @@ function populateLandingFilters() {
 function goToLanding() {
     document.getElementById('catalog').classList.add('hidden');
     document.getElementById('landing').classList.remove('hidden');
+    document.getElementById('toggle-controls').classList.add('hidden');
     const backBtn = document.getElementById('back-btn');
     if (backBtn) backBtn.classList.add('hidden');
 }
@@ -287,6 +289,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const inside = sidebar.contains(e.target) || (hamburger && hamburger.contains(e.target)) || (hamburgerFixed && hamburgerFixed.contains(e.target));
         if (!inside) closeSidebar();
     });
+
+    // Toggle controls panel
+    const toggleControls = document.getElementById('toggle-controls');
+    const controlsPanel = document.querySelector('.controls-panel');
+    if (toggleControls && controlsPanel) {
+        toggleControls.addEventListener('click', () => {
+            controlsPanel.classList.toggle('hidden');
+            toggleControls.textContent = controlsPanel.classList.contains('hidden') ? '⚙️ Mostrar Configurações' : '⚙️ Ocultar Configurações';
+        });
+    }
 });
 
 // --- 2. GERAÇÃO DE CONTROLES E EVENTOS ---

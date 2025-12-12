@@ -3,8 +3,9 @@
     "portas": [
       {
         "id": "porta-001",
-        "nome": "Porta de Giro Slim",
+        "nome": "Porta de Correr 1 Folha Slim",
         "acabamento": "Liso Fosco",
+        "preview": "assets/previews/PORTA_SLIM.jpg",
         
         "opcoes": {
             "cores_aluminio": ["branco", "preto", "Fosco"],
@@ -15,23 +16,23 @@
              {
                 "aluminio": "branco",
                 "vidro": "incolor",
-                "path": "assets/img/portas/slim/branco_incolor.jpg" 
+                "path": "assets/img/slim/branco_incolor.jpg" 
             },
             {
                 "aluminio": "branco",
                 "vidro": "fume",
-                "path": "assets/img/portas/slim/branco_fume.jpg"
+                "path": "assets/img/slim/branco_fume.png"
             },
             {
                 "aluminio": "branco",
                 "vidro": "verde",
-                "path": "assets/img/portas/slim/branco_verde.jpg"
+                "path": "assets/img/slim/branco_verde.png"
             },
           
             {
                 "aluminio": "branco",
                 "vidro": "refletivo",
-                "path": "assets/img/portas/slim/branco_refletivo.jpg"
+                "path": "assets/img/slim/branco_refletivo.png"
             }
         ]
       }

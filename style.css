@@ -9,7 +9,6 @@ body {
     padding: 0;
     background-color: #f4f7f6; /* Fundo claro para o corpo */
     line-height: 1.6;
-    border: 3px solid #2f6a3f; /* Contorno verde nos cantos */
     min-height: 100vh;
     box-sizing: border-box;
 }
@@ -131,7 +130,8 @@ body {
 /* botão hambúrguer fixo (visível mesmo sem header) */
 .hamburger-fixed {
     position: fixed;
-    left: 14px;
+    right: 14px;
+    left: auto;
     top: var(--hamburger-top);
     width: 44px;
     height: 44px;
@@ -152,15 +152,15 @@ body {
 /* Sidebar styles */
 .sidebar {
     position: fixed;
-    left: 0;
+    right: 0;
     top: 0;
     bottom: 0;
     width: 260px;
     background: #ffffff;
-    box-shadow: 2px 0 12px rgba(0,0,0,0.12);
+    box-shadow: -2px 0 12px rgba(0,0,0,0.12);
     padding: 18px;
     z-index: 2000;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     transition: transform 0.26s ease;
 }
 .sidebar:not(.hidden) { transform: translateX(0); }
@@ -374,7 +374,6 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para Mensagens de Erro */
 .error-message {
     color: red;
     font-weight: bold;
@@ -385,10 +384,10 @@ body {
     border-radius: 5px;
 }
 
-/* Responsividade para mobile */
 @media (max-width: 768px) {
     :root {
-        --hamburger-top: 50px; /* Ajuste este valor para testar a posição ideal */
+        --hamburger-top: 50px;
+
     }
 
     .toggle-controls {
@@ -396,7 +395,7 @@ body {
     }
 
     .controls-panel {
-        display: none; /* Escondido por padrão no mobile */
+        display: none;
     }
 
     .controls-panel:not(.hidden) {

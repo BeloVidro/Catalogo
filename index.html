@@ -8,28 +8,89 @@
 </head>
 <body>
 
+    <!-- Hamburger fixo visível (substitui a barra superior) -->
+    <button id="hamburger-fixed" class="hamburger-fixed" aria-label="Abrir menu">☰</button>
+
     <header class="main-header">
         <div class="header-content">
+            <button id="hamburger" class="hamburger" aria-label="Abrir menu">☰</button>
             <div class="logo">
                 <span class="logo-icon">V</span>
                 <span class="logo-text">BELO VIDRO</span>
                 <span class="logo-subtext">vidraçaria</span>
             </div>
             
-            <nav class="categories-nav">
+            <nav class="categories-nav header-only">
                 <a href="#" class="nav-item active" data-category="portas">PORTAS</a>
                 <a href="#" class="nav-item" data-category="janelas">JANELAS</a>
                 <a href="#" class="nav-item" data-category="boxes">BOXES</a>
             </nav>
+            <!-- Sub-abas específicas da categoria (visível apenas para 'portas') -->
+            <nav id="subtabs" class="subtabs header-only hidden">
+                <a href="#" class="subtab-item" data-subtab="hoje">Hoje</a>
+                <a href="#" class="subtab-item" data-subtab="detalhes">Detalhes</a>
+            </nav>
         </div>
     </header>
 
-    <main class="catalog-container">
+    <!-- Sidebar hambúrguer (conteúdo duplicado: categorias + subtabs) -->
+    <aside id="sidebar" class="sidebar hidden" aria-hidden="true">
+        <div class="sidebar-top">
+            <button id="close-sidebar" class="close-sidebar" aria-label="Fechar menu">×</button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-category="portas">PORTAS</a>
+            <a href="#" class="nav-item" data-category="janelas">JANELAS</a>
+            <a href="#" class="nav-item" data-category="boxes">BOXES</a>
+        </nav>
+        <div class="sidebar-subtabs" id="sidebar-subtabs">
+            <a href="#" class="subtab-item" data-subtab="hoje">Hoje</a>
+            <a href="#" class="subtab-item" data-subtab="detalhes">Detalhes</a>
+        </div>
+    </aside>
+
+    <!-- TELA INICIAL: logo centralizada + filtro de projetos -->
+    <main id="landing" class="landing-screen">
+        <div class="landing-inner">
+            <div class="landing-logo">
+                <img src="assets/img/LOGO_BELO.png" srcset="assets/img/LOGO_BELO.png 1x" alt="BELO VIDRO" class="landing-logo-img">
+            </div>
+
+            <p class="landing-tagline">CATALOGO DE EXEMPLOS DE PROJETOS COM REQUINTE E QUALIDADE BELO VIDRO</p>
+
+            <div class="project-filter">
+                <div class="filter-group">
+                    <label for="filter-category">Filtrar por:</label>
+                    <select id="filter-category">
+                        <option value="portas">Portas</option>
+                        <option value="janelas">Janelas</option>
+                        <option value="portoes">Portões</option>
+                        <option value="boxes">Boxs</option>
+                        <option value="espelhos">Espelhos</option>
+                    </select>
+                    <button id="search-btn" class="search-btn" aria-label="Buscar">
+                        <img src="assets/img/lupa.png" alt="Buscar" class="search-icon">
+                    </button>
+                </div>
+            </div>
+
+            <div id="landing-previews" class="landing-previews">
+                <!-- Mini visualizações serão inseridas aqui após seleção de categoria -->
+            </div>
+        </div>
+    </main>
+
+    <main id="catalog" class="catalog-container hidden">
         <section class="visualizer-panel">
             <h2>Visualização do Produto</h2>
             
             <div id="product-display" class="product-display">
                 <img id="layer-base" src="" alt="Produto Selecionado" class="product-layer">
+            </div>
+
+            <!-- Conteúdo da sub-aba (mostrado quando uma sub-aba estiver ativa) -->
+            <div id="subtab-content" class="subtab-content hidden">
+                <!-- Conteúdo dinâmico inserido via JavaScript -->
             </div>
 
             <div class="specs-summary">
@@ -52,5 +113,7 @@
     <script src="data_swap.json"></script>
     <script src="app.js"></script>
     
+    <!-- Botão flutuante para voltar à tela inicial -->
+    <button id="back-btn" class="floating-back hidden" title="Voltar">←</button>
 </body>
 </html>

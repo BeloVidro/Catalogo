@@ -1,4 +1,8 @@
 /* RESET BÁSICO E CONFIGURAÇÃO DE FONTE */
+:root {
+    --hamburger-top: 14px;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -79,6 +83,20 @@ body {
 }
 .floating-back:hover { transform: translateY(-2px); }
 
+/* Toggle button for controls */
+.toggle-controls {
+    display: none;
+    background: #2f6a3f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+.toggle-controls:hover { opacity: 0.9; }
+
 /* --- ESTILO DO CABEÇALHO (INSPIRADO NA REFERÊNCIA) --- */
 .main-header {
     display: none; /* Oculta a barra superior - todo conteúdo fica no hambúrguer */
@@ -114,7 +132,7 @@ body {
 .hamburger-fixed {
     position: fixed;
     left: 14px;
-    top: 14px;
+    top: var(--hamburger-top);
     width: 44px;
     height: 44px;
     border-radius: 8px;
@@ -365,4 +383,46 @@ body {
     border: 1px solid #ffdddd;
     background-color: #fffafa;
     border-radius: 5px;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+    :root {
+        --hamburger-top: 50px; /* Ajuste este valor para testar a posição ideal */
+    }
+
+    .toggle-controls {
+        display: block !important;
+    }
+
+    .controls-panel {
+        display: none; /* Escondido por padrão no mobile */
+    }
+
+    .controls-panel:not(.hidden) {
+        display: block;
+    }
+
+    .landing-logo-img {
+        height: 200px;
+        width: auto;
+        max-width: none;
+    }
+
+    .landing-tagline {
+        font-size: 0.9em;
+    }
+
+    .landing-thumbs {
+        gap: 8px;
+    }
+
+    .landing-thumb {
+        width: 120px;
+    }
+
+    .landing-thumb img {
+        width: 120px;
+        height: 80px;
+    }
 }

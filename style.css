@@ -1,6 +1,7 @@
 /* RESET BÁSICO E CONFIGURAÇÃO DE FONTE */
 :root {
     --hamburger-top: 14px;
+    --sidebar-close-top: 12px; /* distância do topo para o X fechar (padrão) */
 }
 
 body {
@@ -127,9 +128,10 @@ body {
     cursor: pointer;
 }
 
+/* botão hambúrguer fixo (visível mesmo sem header) */
 .hamburger-fixed {
     position: fixed;
-    right: 22px;
+    right: 18px;
     left: auto;
     top: var(--hamburger-top);
     width: 44px;
@@ -165,6 +167,13 @@ body {
 .sidebar:not(.hidden) { transform: translateX(0); }
 .sidebar .sidebar-top { display:flex; justify-content:flex-end }
 .close-sidebar { background:transparent; border:none; font-size:26px; cursor:pointer }
+.close-sidebar {
+    position: absolute;
+    top: var(--sidebar-close-top, 12px);
+    right: 12px;
+    padding: 8px; /* aumenta área de toque */
+    border-radius: 6px;
+}
 .sidebar-nav { display:flex; flex-direction:column; gap:10px; margin-top:10px }
 .sidebar-nav .nav-item { color:#2f6a3f; text-decoration:none; padding:8px 6px; border-bottom:none; font-weight:700 }
 .sidebar-subtabs { margin-top:18px; display:flex; flex-direction:column; gap:6px }
@@ -386,7 +395,7 @@ body {
 @media (max-width: 768px) {
     :root {
         --hamburger-top: 50px;
-
+        --sidebar-close-top: 66px; /* no mobile, desça o X para ficar fácil de tocar */
     }
 
     .toggle-controls {
@@ -424,5 +433,3 @@ body {
         height: 80px;
     }
 }
-
-

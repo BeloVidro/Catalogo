@@ -127,10 +127,9 @@ body {
     cursor: pointer;
 }
 
-/* botão hambúrguer fixo (visível mesmo sem header) */
 .hamburger-fixed {
     position: fixed;
-    right: 14px;
+    right: 18px;
     left: auto;
     top: var(--hamburger-top);
     width: 44px;
@@ -425,3 +424,4 @@ body {
         height: 80px;
     }
 }
+

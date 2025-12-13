@@ -129,7 +129,7 @@ body {
 
 .hamburger-fixed {
     position: fixed;
-    right: 18px;
+    right: 22px;
     left: auto;
     top: var(--hamburger-top);
     width: 44px;
@@ -152,7 +152,7 @@ body {
 .sidebar {
     position: fixed;
     right: 0;
-    top: 0;
+    top: 10px;
     bottom: 0;
     width: 260px;
     background: #ffffff;
@@ -424,4 +424,5 @@ body {
         height: 80px;
     }
 }
+
 

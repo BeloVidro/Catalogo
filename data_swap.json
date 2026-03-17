@@ -8,38 +8,531 @@
         "preview": "assets/previews/PORTA_SLIM.jpg",
         
         "opcoes": {
-            "cores_aluminio": ["branco", "preto", "Fosco"],
+            "cores_aluminio": ["branco", "preto", "fosco"],
             "cores_vidro": ["incolor", "fume", "verde","refletivo"]
         },
         
         "combinacoes": [
-             {
+            {
                 "aluminio": "branco",
                 "vidro": "incolor",
-                "path": "assets/img/slim/branco_incolor.jpg" 
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_branco_incolor.png"
             },
             {
                 "aluminio": "branco",
                 "vidro": "fume",
-                "path": "assets/img/slim/branco_fume.png"
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_branco_fume.png"
             },
             {
                 "aluminio": "branco",
                 "vidro": "verde",
-                "path": "assets/img/slim/branco_verde.png"
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_branco_verde.png"
             },
-          
             {
                 "aluminio": "branco",
                 "vidro": "refletivo",
-                "path": "assets/img/slim/branco_refletivo.png"
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_branco_refletivo.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "incolor",
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_preto_incolor.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "fume",
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_preto_fume.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "verde",
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_preto_verde.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "refletivo",
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_preto_refletivo.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "incolor",
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_fosco_incolor.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "fume",
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_fosco_fume.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "verde",
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_fosco_verde.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "refletivo",
+                "path": "assets/img/portas/vidro/de correr 1 folha/porta de vidro uma folha de corre_fosco_refletivo.png"
+            }
+        ]
+      },
+     {
+        "id": "porta-002",
+        "nome": "Porta de Correr 2 Folha",
+        "acabamento": "Liso",
+        "preview": "assets/previews/PORTA_2f.PNG",
+        
+        "opcoes": {
+            "cores_aluminio": ["branco", "preto", "fosco"],
+            "cores_vidro": ["incolor", "fume", "verde","refletivo"]
+        },
+        
+        "combinacoes": [
+            {
+                "aluminio": "branco",
+                "vidro": "incolor",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_branco_incolor.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "fume",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_branco_fume.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "verde",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_branco_verde.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "refletivo",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_branco_refletivo.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "incolor",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_preto_incolor.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "fume",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_preto_fume.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "verde",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_preto_verde.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "refletivo",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_preto_refletivo.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "incolor",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_fosco_incolor.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "fume",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_fosco_fume.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "verde",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_fosco_verde.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "refletivo",
+                "path": "assets/img/portas/vidro/de correr 2 folha/porta_fosco_refletivo.png"
+            }
+        ]
+      },{
+        "id": "porta-003",
+        "nome": "Porta de Giro",
+        "acabamento": "Liso",
+        "preview": "assets/previews/PORTA_2f.jpg",
+        
+        "opcoes": {
+            "cores_aluminio": ["branco", "preto", "fosco"],
+            "cores_vidro": ["incolor", "fume", "verde","refletivo"]
+        },
+        
+        "combinacoes": [
+            {
+                "aluminio": "branco",
+                "vidro": "incolor",
+                "path": "assets/img/portas/vidro/giro/porta_giro_branco_incolor.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "fume",
+                "path": "assets/img/portas/vidro/giro/porta_giro_branco_fume.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "verde",
+                "path": "assets/img/portas/vidro/giro/porta_giro_branco_verde.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "refletivo",
+                "path": "assets/img/portas/vidro/giro/porta_giro_branco_refletivo.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "incolor",
+                "path": "assets/img/portas/vidro/giro/porta_giro_preto_incolor.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "fume",
+                "path": "assets/img/portas/vidro/giro/porta_giro_preto_fume.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "verde",
+                "path": "assets/img/portas/vidro/giro/porta_giro_preto_verde.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "refletivo",
+                "path": "assets/img/portas/vidro/giro/porta_giro_preto_refletivo.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "incolor",
+                "path": "assets/img/portas/vidro/giro/porta_giro_fosco_incolor.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "fume",
+                "path": "assets/img/portas/vidro/giro/porta_giro_fosco_fume.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "verde",
+                "path": "assets/img/portas/vidro/giro/porta_giro_fosco_verde.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "refletivo",
+                "path": "assets/img/portas/vidro/giro/porta_giro_fosco_refletivo.png"
             }
         ]
       }
-
     ],
-    
-    "janelas": [],
-    "boxes": []
+    "janelas": [
+      {
+        "id": "janela-001",
+        "nome": "Janela de Correr 2 Folha M2000",
+        "acabamento": "Liso Fosco",
+        "preview": "assets/previews/JANELA_M2.png",
+        "opcoes": {
+            "cores_aluminio": ["branco", "preto", "fosco"],
+            "cores_vidro": ["incolor", "fume", "verde","refletivo"]
+        },
+        "combinacoes": [
+            {
+                "aluminio": "branco",
+                "vidro": "incolor",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_branco_incolor.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "fume",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_branco_fume.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "verde",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_branco_verde.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "refletivo",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_branco_refletivo.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "incolor",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_preto_incolor.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "fume",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_preto_fume.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "verde",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_preto_verde.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "refletivo",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_preto_refletivo.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "incolor",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_fosco_incolor.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "fume",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_fosco_fume.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "verde",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_fosco_verde.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "refletivo",
+                "path": "assets/img/Janelas/DUASFOLHAS/janela duas folhas_fosco_refletivo.png"
+            }
+        ]
+      },
+      {
+        "id": "janela-002",
+        "nome": "Janela com Bandeira 2 Folhas",
+        "acabamento": "Liso",
+        "preview": "assets/previews/JANELA_BANDEIRA.JPG",
+        "opcoes": {
+            "cores_aluminio": ["branco"],
+            "cores_vidro": ["incolor"]
+        },
+        "combinacoes": [
+            {
+                "aluminio": "branco",
+                "vidro": "incolor",
+                "path": "assets/img/Janelas/DUASFOLHAS/com bandeira/janela duas folhas com bandeira_ braco_incolor.jpg"
+            }
+        ]
+      }
+    ],
+    "boxes": [ {
+        "id": "box-001",
+        "nome": "Box de Banheiro 2 Folha",
+        "acabamento": "Temperado",
+        "preview": "assets/previews/BOX_BANHEIRO.png",
+        "opcoes": {
+            "cores_aluminio": ["branco", "preto", "fosco", "dourado"],
+            "cores_vidro": ["incolor", "fume", "verde","refletivo","jateado"]
+        },
+        "combinacoes": [
+            {
+                "aluminio": "branco",
+                "vidro": "incolor",
+                "path": "assets/img/box/BANHEIRO/box banheiro_branco_incolor.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "fume",
+                "path": "assets/img/box/BANHEIRO/box banheiro_branco_fume.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "verde",
+                "path": "assets/img/box/BANHEIRO/box banheiro_branco_verde.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "refletivo",
+                "path": "assets/img/box/BANHEIRO/box banheiro_branco_refletivo.png"
+            },
+            {
+                "aluminio": "branco",
+                "vidro": "jateado",
+                "path": "assets/img/box/BANHEIRO/box banheiro_branco_jateado.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "incolor",
+                "path": "assets/img/box/BANHEIRO/box banheiro_preto_incolor.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "fume",
+                "path": "assets/img/box/BANHEIRO/box banheiro_preto_fume.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "verde",
+                "path": "assets/img/box/BANHEIRO/box banheiro_preto_verde.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "refletivo",
+                "path": "assets/img/box/BANHEIRO/box banheiro_preto_refletivo.png"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "jateado",
+                "path": "assets/img/box/BANHEIRO/box banheiro_preto_jateado.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "incolor",
+                "path": "assets/img/box/BANHEIRO/box banheiro_fosco_incolor.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "fume",
+                "path": "assets/img/box/BANHEIRO/box banheiro_fosco_fume.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "verde",
+                "path": "assets/img/box/BANHEIRO/box banheiro_fosco_verde.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "refletivo",
+                "path": "assets/img/box/BANHEIRO/box banheiro_fosco_refletivo.png"
+            },
+            {
+                "aluminio": "fosco",
+                "vidro": "jateado",
+                "path": "assets/img/box/BANHEIRO/box banheiro_fosco_jateado.png"
+            },
+            {
+                "aluminio": "dourado",
+                "vidro": "incolor",
+                "path": "assets/img/box/BANHEIRO/box banheiro_dourado_incolor.png"
+            },
+            {
+                "aluminio": "dourado",
+                "vidro": "fume",
+                "path": "assets/img/box/BANHEIRO/box banheiro_dourado_fume.png"
+            },
+            {
+                "aluminio": "dourado",
+                "vidro": "verde",
+                "path": "assets/img/box/BANHEIRO/box banheiro_dourado_verde.png"
+            },
+            {
+                "aluminio": "dourado",
+                "vidro": "refletivo",
+                "path": "assets/img/box/BANHEIRO/box banheiro_dourado_refletivo.png"
+            },
+            {
+                "aluminio": "dourado",
+                "vidro": "jateado",
+                "path": "assets/img/box/BANHEIRO/box banheiro_dourado_jateado.png"
+            }
+        ]
+      },
+      {
+        "id": "box-002",
+        "nome": "Box de Pia",
+        "acabamento": "Temperado",
+        "preview": "assets/previews/BOX_PIA.png",
+        "opcoes": {
+            "cores_aluminio": ["branco", "preto"],
+            "cores_vidro": ["incolor", "refletivo"]
+        },
+        "combinacoes": [
+            {
+                "aluminio": "branco",
+                "vidro": "incolor",
+                "path": "assets/img/box/PIA/box de pia_branco_ incolor.jpg"
+            },
+            {
+                "aluminio": "preto",
+                "vidro": "refletivo",
+                "path": "assets/img/box/PIA/box_de_pia_preto_refletivo.jpg"
+            }
+        ]
+      }
+    ],
+    "portas_aluminio": [
+      {
+        "id": "porta-aluminio-001",
+        "nome": "Porta de Alumínio 1 Folha",
+        "acabamento": "Liso",
+        "preview": "assets/previews/PORTA_ALUMINIO.jpg",
+        "opcoes": {
+            "cores_aluminio": ["branco"]
+        },
+        "combinacoes": [
+            {
+                "aluminio": "branco",
+                "path": "assets/img/portas/alumínio/1 folha/porta de aluminio _branco_sem vidro.jpg"
+            }
+        ]
+      }
+    ],
+    "portoes": [
+      {
+        "id": "portao-001",
+        "nome": "Portão de Alumínio",
+        "acabamento": "Liso",
+        "preview": "assets/previews/PORTOES.jpg",
+        "opcoes": {
+            "cores_aluminio": ["branco"]
+        },
+        "combinacoes": [
+            {
+                "aluminio": "branco",
+                "path": "assets/img/portões/portão_aluminio branco_sem vidro.01.webp"
+            }
+        ]
+      }
+    ],
+    "espelhos": [
+      {
+        "id": "espelho-001",
+        "nome": "Espelho Padrão",
+        "acabamento": "Polido",
+        "preview": "assets/previews/ESPELHO.jpg",
+        "opcoes": {
+            "tipo": ["padrao"]
+        },
+        "combinacoes": [
+            {
+                "tipo": "padrao",
+                "path": "assets/img/espelhos/espelho_padrao.jpg"
+            }
+        ]
+      }
+    ],
+    "vidros": [
+      {
+        "id": "vidro-001",
+        "nome": "Vidro Temperado",
+        "acabamento": "Transparente",
+        "preview": "assets/previews/VIDRO.jpg",
+        "opcoes": {
+            "tipo": ["temperado"]
+        },
+        "combinacoes": [
+            {
+                "tipo": "temperado",
+                "path": "assets/img/vidros/vidro_temperado.jpg"
+            }
+        ]
+      }
+    ],
+    "acessorios": [
+      {
+        "id": "acessorio-001",
+        "nome": "Acessório Padrão",
+        "acabamento": "Metálico",
+        "preview": "assets/previews/ACESSORIO.jpg",
+        "opcoes": {
+            "tipo": ["padrao"]
+        },
+        "combinacoes": [
+            {
+                "tipo": "padrao",
+                "path": "assets/img/acessorios/acessorio_padrao.jpg"
+            }
+        ]
+      }
+    ]
   }
 }

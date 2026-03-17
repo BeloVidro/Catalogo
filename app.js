@@ -135,8 +135,8 @@ function setupSubtabs() {
     if (!subtabs || !subtabContent) return;
 
     // Mostra subtabs somente para a categoria 'portas'
-    if (currentCategory === 'portas') {
-        subtabs.classList.remove('hidden');
+    if (currentCategory === 'portas' || currentCategory === 'janelas' || currentCategory === 'boxes') {
+    subtabs.classList.remove('hidden');
         // Define evento nos itens de subtab
         document.querySelectorAll('#subtabs .subtab-item').forEach(item => {
             item.classList.remove('active');
@@ -227,7 +227,6 @@ function selectProduct(product) {
     currentSelections = {
         aluminio: currentProduct.opcoes.cores_aluminio[0],
         vidro: currentProduct.opcoes.cores_vidro[0]
-        // Puxador removido
     };
 
     renderControls();
@@ -325,8 +324,8 @@ function renderControls() {
 
     // 2. Controles Específicos por Categoria
     
-    if (currentCategory === 'portas') {
-        renderPortasControls(currentProduct.opcoes);
+    if (currentCategory === 'portas' || currentCategory === 'janelas' || currentCategory === 'boxes') {
+    renderPortasControls(currentProduct.opcoes);
     } 
     // Outras categorias virão aqui...
     

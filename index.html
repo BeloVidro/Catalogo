@@ -498,7 +498,7 @@
       document.getElementById('totalFinal').value = `R$ ${totalFinal.toFixed(2)}`;
     }
 
-    function processarPedido() {
+    async function processarPedido() {
       // 1. Preencher os dados na área de impressão
       const num = document.getElementById('numPedido').value;
       const dataRaw = document.getElementById('dataPedido').value;
@@ -554,11 +554,11 @@
       document.querySelector('.p-desconto').innerText = `R$ ${parseFloat(document.getElementById('desconto').value || 0).toFixed(2)}`;
       document.querySelector('.p-total').innerText = document.getElementById('totalFinal').value;
 
-      // 2. Enviar dados para o Google Sheets / Drive (Opcional - Script no Webhook)
-      salvarNoGoogleSheets();
+      const gravou = await salvarNoGoogleSheets();
 
-      // 3. Chamar a impressão da página
-      window.print();
+if (gravou) {
+  window.print();
+}
     }
    async function salvarNoGoogleSheets() {
 
@@ -624,7 +624,6 @@
 
   }
 }
-}''
   </script>
 </body>
 </html>

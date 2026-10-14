@@ -530,7 +530,6 @@
         const u = parseFloat(units[i].value || 0).toFixed(2);
         const t = parseFloat(totals[i].value || 0).toFixed(2);
 
-        // Via Montagem (Sem valores)
         tbodyMontagem.innerHTML += `
           <tr>
             <td style="text-align: center;">${q}</td>
@@ -538,7 +537,6 @@
           </tr>
         `;
 
-        // Via Cliente (Com valores)
         tbodyCliente.innerHTML += `
           <tr>
             <td style="text-align: center;">${q}</td>
@@ -549,81 +547,83 @@
         `;
       });
 
-      // Preencher totais
       document.querySelector('.p-subtotal').innerText = document.getElementById('subtotal').value;
       document.querySelector('.p-desconto').innerText = `R$ ${parseFloat(document.getElementById('desconto').value || 0).toFixed(2)}`;
       document.querySelector('.p-total').innerText = document.getElementById('totalFinal').value;
 
-      const gravou = await salvarNoGoogleSheets();
-
-if (gravou) {
-  window.print();
-}
+      try {
+        await salvarNoGoogleSheets();
+      } catch (erro) {
+        console.error('Erro ao gravar pedido:', erro);
+        alert('Pedido preparado, mas houve problema ao registrar no sistema. O documento será impresso mesmo assim.');
+      } finally {
+        window.print();
+      }
     }
-   async function salvarNoGoogleSheets() {
 
-  const WEBHOOK_URL =
-    "https://script.google.com/macros/s/AKfycbzFfP6_eoO7kyPo8pnBRJTc62J_StM1PHYC4VkH5-tmkZQcL5VxfLmOJN9SIeS6IkuD/exec";
+    async function salvarNoGoogleSheets() {
+      const WEBHOOK_URL =
+        "https://script.google.com/macros/s/AKfycbzFfP6_eoO7kyPo8pnBRJTc62J_StM1PHYC4VkH5-tmkZQcL5VxfLmOJN9SIeS6IkuD/exec";
 
-  const quants = document.querySelectorAll('.item-quant');
-  const discs = document.querySelectorAll('.item-disc');
-  const units = document.querySelectorAll('.item-unit');
-  const totals = document.querySelectorAll('.item-total');
+      if (typeof fetch !== 'function') {
+        console.warn('Fetch não disponível neste ambiente. Prosseguindo sem gravação.');
+        return true;
+      }
 
-  const itensArray = [];
+      const quants = document.querySelectorAll('.item-quant');
+      const discs = document.querySelectorAll('.item-disc');
+      const units = document.querySelectorAll('.item-unit');
+      const totals = document.querySelectorAll('.item-total');
 
-  quants.forEach((qInput, i) => {
+      const itensArray = [];
 
-    itensArray.push({
-      quantidade: qInput.value,
-      discriminacao: discs[i].value,
-      valorUnitario: units[i].value,
-      valorTotal: totals[i].value
-    });
+      quants.forEach((qInput, i) => {
+        itensArray.push({
+          quantidade: qInput.value,
+          discriminacao: discs[i].value,
+          valorUnitario: units[i].value,
+          valorTotal: totals[i].value
+        });
+      });
 
-  });
+      const payload = {
+        numPedido: document.getElementById('numPedido').value,
+        dataPedido: document.getElementById('dataPedido').value,
+        nomeCliente: document.getElementById('nomeCliente').value,
+        foneCliente: document.getElementById('foneCliente').value,
+        endCliente: document.getElementById('endCliente').value,
+        cpfCliente: document.getElementById('cpfCliente').value,
+        rgCliente: document.getElementById('rgCliente').value,
+        dnCliente: document.getElementById('dnCliente').value,
+        subtotal: document.getElementById('subtotal').value,
+        desconto: document.getElementById('desconto').value,
+        totalFinal: document.getElementById('totalFinal').value,
+        itens: itensArray
+      };
 
-  const payload = {
-    numPedido: document.getElementById('numPedido').value,
-    dataPedido: document.getElementById('dataPedido').value,
-    nomeCliente: document.getElementById('nomeCliente').value,
-    foneCliente: document.getElementById('foneCliente').value,
-    endCliente: document.getElementById('endCliente').value,
-    cpfCliente: document.getElementById('cpfCliente').value,
-    rgCliente: document.getElementById('rgCliente').value,
-    dnCliente: document.getElementById('dnCliente').value,
-    subtotal: document.getElementById('subtotal').value,
-    desconto: document.getElementById('desconto').value,
-    totalFinal: document.getElementById('totalFinal').value,
-    itens: itensArray
-  };
+      try {
+        const response = await fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
 
-  try {
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
 
-    const response = await fetch(WEBHOOK_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
+        const resultado = await response.text();
+        console.log("Resposta Apps Script:");
+        console.log(resultado);
 
-    const resultado = await response.text();
-
-    console.log("Resposta Apps Script:");
-    console.log(resultado);
-
-    return true;
-
-  } catch (erro) {
-
-    console.error("Erro:", erro);
-    alert("Não foi possível gravar os dados.");
-
-    return false;
-
-  }
-}
+        return true;
+      } catch (erro) {
+        console.error("Erro ao gravar no Google Sheets:", erro);
+        throw erro;
+      }
+    }
   </script>
 </body>
 </html>

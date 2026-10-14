@@ -560,27 +560,29 @@
       // 3. Chamar a impressão da página
       window.print();
     }
+   async function salvarNoGoogleSheets() {
 
-    function salvarNoGoogleSheets() {
-  const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzaN0rqk_jF1Aj0_Ho-r1TaJY4OOorFtyOOtjxH6iRdxfILti9PjU3jZFvFtR0MAdVt/exec";
+  const WEBHOOK_URL =
+    "https://script.google.com/macros/s/AKfycbzFfP6_eoO7kyPo8pnBRJTc62J_StM1PHYC4VkH5-tmkZQcL5VxfLmOJN9SIeS6IkuD/exec";
 
-  // Monta a lista de itens
   const quants = document.querySelectorAll('.item-quant');
   const discs = document.querySelectorAll('.item-disc');
   const units = document.querySelectorAll('.item-unit');
   const totals = document.querySelectorAll('.item-total');
 
-  let itensArray = [];
+  const itensArray = [];
+
   quants.forEach((qInput, i) => {
+
     itensArray.push({
       quantidade: qInput.value,
       discriminacao: discs[i].value,
       valorUnitario: units[i].value,
       valorTotal: totals[i].value
     });
+
   });
 
-  // Monta o objeto com todas as informações
   const payload = {
     numPedido: document.getElementById('numPedido').value,
     dataPedido: document.getElementById('dataPedido').value,
@@ -596,19 +598,32 @@
     itens: itensArray
   };
 
-  // Envia via POST para a planilha
-  fetch(WEBHOOK_URL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  }).then(() => {
-    console.log("Pedido gravado na planilha com sucesso!");
-  }).catch(err => {
-    console.error("Erro ao salvar no Google Sheets:", err);
-  });
+  try {
+
+    const response = await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const resultado = await response.text();
+
+    console.log("Resposta Apps Script:");
+    console.log(resultado);
+
+    return true;
+
+  } catch (erro) {
+
+    console.error("Erro:", erro);
+    alert("Não foi possível gravar os dados.");
+
+    return false;
+
+  }
+}
 }''
   </script>
 </body>

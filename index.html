@@ -1,121 +1,615 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Interativo - BELO VIDRO</title>
-    <link rel="stylesheet" href="style.css"> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belo Vidro - Gerador de Pedidos</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f4f6f8;
+      padding: 20px;
+      color: #333;
+    }
+
+    /* ESTILOS DA TELA DE PREENCHIMENTO */
+    .app-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #0b5c8a;
+      margin-bottom: 20px;
+      font-size: 24px;
+      border-bottom: 2px solid #0b5c8a;
+      padding-bottom: 8px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: #555;
+    }
+
+    .form-group input {
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    /* TABELA DE ITENS NO FORMULÁRIO */
+    table.form-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+
+    table.form-table th, table.form-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    table.form-table th {
+      background: #f0f4f8;
+      font-size: 13px;
+    }
+
+    table.form-table input {
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .btn-add { background: #28a745; color: white; margin-bottom: 20px; }
+    .btn-submit { background: #0b5c8a; color: white; width: 100%; font-size: 16px; padding: 12px; }
+    .btn-remove { background: #dc3545; color: white; padding: 4px 8px; font-size: 12px; }
+
+    /* LAYOUT IMPRESSÃO A4 (OCULTO NA TELA) */
+    #print-area {
+      display: none;
+    }
+
+    /* ESTILOS EXCLUSIVOS DE IMPRESSÃO (@media print) */
+    @media print {
+      @page {
+        size: A4 landscape; /* Folha A4 em Paisagem para as 2 vias ficarem lado a lado */
+        margin: 5mm;
+      }
+
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .app-container {
+        display: none !important; /* Esconde a interface de digitação */
+      }
+
+      #print-area {
+        display: flex !important;
+        width: 100%;
+        height: 100vh;
+        gap: 10mm;
+      }
+
+      .via {
+        width: 50%;
+        border: 1px solid #000;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+      }
+
+      .header-via {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #000;
+        padding-bottom: 6px;
+        margin-bottom: 6px;
+      }
+
+      .logo-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #0b5c8a;
+      }
+
+      .sub-header {
+        font-size: 9px;
+        color: #555;
+      }
+
+      .pedido-info {
+        text-align: right;
+      }
+
+      .pedido-num {
+        color: red;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .cliente-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        margin-bottom: 8px;
+      }
+
+      .info-row {
+        border-bottom: 1px dotted #888;
+        padding-bottom: 2px;
+      }
+
+      .info-full {
+        grid-column: span 2;
+      }
+
+      /* TABELA DA IMPRESSÃO */
+      table.print-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 8px;
+        flex-grow: 1;
+      }
+
+      table.print-table th, table.print-table td {
+        border: 1px solid #000;
+        padding: 4px;
+        text-align: left;
+        font-size: 10px;
+      }
+
+      table.print-table th {
+        background-color: #f0f0f0;
+        text-align: center;
+      }
+
+      .termo-garantia {
+        font-size: 8px;
+        color: #b30000;
+        margin-bottom: 8px;
+        line-height: 1.1;
+      }
+
+      .totais-box {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 8px;
+      }
+
+      .totais-table {
+        width: 180px;
+        border-collapse: collapse;
+      }
+
+      .totais-table td {
+        border: 1px solid #000;
+        padding: 3px;
+        font-weight: bold;
+        font-size: 10px;
+      }
+
+      .assinaturas {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 15px;
+        padding-top: 5px;
+      }
+
+      .line-ass {
+        border-top: 1px solid #000;
+        width: 40%;
+        text-align: center;
+        font-size: 9px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Hamburger fixo visível (substitui a barra superior) -->
-    <button id="hamburger-fixed" class="hamburger-fixed" aria-label="Abrir menu">☰</button>
-
-    <header class="main-header">
-        <div class="header-content">
-            <button id="hamburger" class="hamburger" aria-label="Abrir menu">☰</button>
-            <div class="logo">
-                <span class="logo-icon">V</span>
-                <span class="logo-text">BELO VIDRO</span>
-                <span class="logo-subtext">vidraçaria</span>
-            </div>
-            
-            <nav class="categories-nav header-only">
-                <a href="#" class="nav-item active" data-category="portas">PORTAS</a>
-                <a href="#" class="nav-item" data-category="janelas">JANELAS</a>
-                <a href="#" class="nav-item" data-category="boxes">BOXES</a>
-            </nav>
-            <!-- Sub-abas específicas da categoria (visível apenas para 'portas') -->
-            <nav id="subtabs" class="subtabs header-only hidden">
-                <a href="#" class="subtab-item" data-subtab="hoje">Hoje</a>
-                <a href="#" class="subtab-item" data-subtab="detalhes">Detalhes</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Sidebar hambúrguer (conteúdo duplicado: categorias + subtabs) -->
-    <aside id="sidebar" class="sidebar hidden" aria-hidden="true">
-        <div class="sidebar-top">
-            <button id="close-sidebar" class="close-sidebar" aria-label="Fechar menu">×</button>
-        </div>
-        <nav class="sidebar-nav">
-            <a href="#" class="nav-item active" data-category="portas">PORTAS</a>
-            <a href="#" class="nav-item" data-category="janelas">JANELAS</a>
-            <a href="#" class="nav-item" data-category="boxes">BOXES</a>
-        </nav>
-        <div class="sidebar-subtabs" id="sidebar-subtabs">
-            <a href="#" class="subtab-item" data-subtab="hoje">Hoje</a>
-            <a href="#" class="subtab-item" data-subtab="detalhes">Detalhes</a>
-        </div>
-    </aside>
-
-    <!-- TELA INICIAL: logo centralizada + filtro de projetos -->
-    <main id="landing" class="landing-screen">
-        <div class="landing-inner">
-            <div class="landing-logo">
-                <img src="assets/img/LOGO_BELO.png" srcset="assets/img/LOGO_BELO.png 1x" alt="BELO VIDRO" class="landing-logo-img">
-            </div>
-
-            <p class="landing-tagline">CATALOGO DE EXEMPLOS DE PROJETOS COM REQUINTE E QUALIDADE BELO VIDRO</p>
-
-            <div class="project-filter">
-                <div class="filter-group">
-                    <label for="filter-category">Filtrar por:</label>
-                    <select id="filter-category">
-                        <option value="portas">Portas</option>
-                        <option value="janelas">Janelas</option>
-                        <option value="portoes">Portões</option>
-                        <option value="boxes">Boxs</option>
-                        <option value="espelhos">Espelhos</option>
-                    </select>
-                    <button id="search-btn" class="search-btn" aria-label="Buscar">
-                        <img src="assets/img/lupa.png" alt="Buscar" class="search-icon">
-                    </button>
-                </div>
-            </div>
-
-            <div id="landing-previews" class="landing-previews">
-                <!-- Mini visualizações serão inseridas aqui após seleção de categoria -->
-            </div>
-        </div>
-    </main>
-
-    <main id="catalog" class="catalog-container hidden">
-        <section class="visualizer-panel">
-            <h2>Visualização do Produto</h2>
-            
-            <button id="toggle-controls" class="toggle-controls hidden" title="Mostrar/Ocultar Configurações">⚙️ Configurações</button>
-            
-            <div id="product-display" class="product-display">
-                <img id="layer-base" src="" alt="Produto Selecionado" class="product-layer">
-            </div>
-
-            <!-- Conteúdo da sub-aba (mostrado quando uma sub-aba estiver ativa) -->
-            <div id="subtab-content" class="subtab-content hidden">
-                <!-- Conteúdo dinâmico inserido via JavaScript -->
-            </div>
-
-            <div class="specs-summary">
-                <h3>Especificações Atuais</h3>
-                <p>Modelo: <span id="spec-modelo">Aguardando Seleção...</span></p>
-                <p>Acabamento: <span id="spec-acabamento">N/A</span></p>
-                <p>Cor Alumínio: <span id="spec-cor-aluminio">N/A</span></p>
-                <p>Cor Vidro: <span id="spec-cor-vidro">N/A</span></p>
-            </div>
-        </section>
-
-        <aside class="controls-panel">
-            <h2>Opções de Configuração</h2>
-            
-            <div id="controls-area">
-                </div>
-        </aside>
-    </main>
-
-    <script src="data_swap.json"></script>
-    <script src="app.js"></script>
+  <!-- INTERFACE DE PREENCHIMENTO -->
+  <div class="app-container">
+    <h1>Belo Vidro - Emissão de Pedido</h1>
     
-    <!-- Botão flutuante para voltar à tela inicial -->
-    <button id="back-btn" class="floating-back hidden" title="Voltar">←</button>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Nº do Pedido</label>
+        <input type="text" id="numPedido" value="0450">
+      </div>
+      <div class="form-group">
+        <label>Data</label>
+        <input type="date" id="dataPedido">
+      </div>
+      <div class="form-group">
+        <label>Nome do Cliente</label>
+        <input type="text" id="nomeCliente" placeholder="Nome completo">
+      </div>
+      <div class="form-group">
+        <label>Telefone / Fone</label>
+        <input type="text" id="foneCliente" placeholder="(87) 9....">
+      </div>
+      <div class="form-group">
+        <label>Endereço</label>
+        <input type="text" id="endCliente" placeholder="Rua, Número, Bairro">
+      </div>
+      <div class="form-group">
+        <label>CPF (Apenas Via Cliente)</label>
+        <input type="text" id="cpfCliente" placeholder="000.000.000-00">
+      </div>
+      <div class="form-group">
+        <label>RG</label>
+        <input type="text" id="rgCliente">
+      </div>
+      <div class="form-group">
+        <label>D/N (Data Nasc.)</label>
+        <input type="text" id="dnCliente">
+      </div>
+    </div>
+
+    <h3>Itens do Pedido</h3>
+    <table class="form-table">
+      <thead>
+        <tr>
+          <th style="width: 80px;">Quant.</th>
+          <th>Discriminação dos Produtos / Serviços</th>
+          <th style="width: 120px;">P. Unit (R$)</th>
+          <th style="width: 120px;">P. Total (R$)</th>
+          <th style="width: 50px;">Ação</th>
+        </tr>
+      </thead>
+      <tbody id="itens-body">
+        <tr>
+          <td><input type="number" class="item-quant" value="1" oninput="calcularTotais()"></td>
+          <td><input type="text" class="item-disc" placeholder="Descrição do item/vidro"></td>
+          <td><input type="number" step="0.01" class="item-unit" value="0.00" oninput="calcularTotais()"></td>
+          <td><input type="number" step="0.01" class="item-total" value="0.00" readonly></td>
+          <td><button class="btn btn-remove" onclick="removerLinha(this)">X</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-add" onclick="adicionarLinha()">+ Adicionar Item</button>
+
+    <div class="form-grid" style="margin-top: 15px;">
+      <div class="form-group">
+        <label>Subtotal (R$)</label>
+        <input type="text" id="subtotal" readonly value="R$ 0,00">
+      </div>
+      <div class="form-group">
+        <label>Desconto (R$)</label>
+        <input type="number" step="0.01" id="desconto" value="0.00" oninput="calcularTotais()">
+      </div>
+      <div class="form-group">
+        <label>Total Final (R$)</label>
+        <input type="text" id="totalFinal" readonly value="R$ 0,00">
+      </div>
+    </div>
+
+    <button class="btn btn-submit" onclick="processarPedido()">Confirmar, Registrar e Imprimir (A4)</button>
+  </div>
+
+  <!-- LAYOUT QUE SERÁ IMPRESSO (DUAS VIAS LADO A LADO NA FOLHA A4) -->
+  <div id="print-area">
+    
+    <!-- VIA 1: MONTAGEM / PRODUÇÃO (SEM VALORES E SEM CPF) -->
+    <div class="via">
+      <div>
+        <div class="header-via">
+          <div>
+            <div class="logo-title">Belo VIDRO</div>
+            <div class="sub-header">Qualidade e requinte com o menor preço</div>
+            <div class="sub-header">São José do Belmonte - PE</div>
+          </div>
+          <div class="pedido-info">
+            <div style="font-size: 11px; font-weight: bold;">VIA MONTAGEM</div>
+            <div class="pedido-num">PEDIDO Nº <span class="p-num">0000</span></div>
+            <div>Data: <span class="p-data"></span></div>
+          </div>
+        </div>
+
+        <div class="cliente-info">
+          <div class="info-row info-full"><strong>Nome:</strong> <span class="p-nome"></span></div>
+          <div class="info-row"><strong>Fone:</strong> <span class="p-fone"></span></div>
+          <div class="info-row"><strong>D/N:</strong> <span class="p-dn"></span></div>
+          <div class="info-row info-full"><strong>End.:</strong> <span class="p-end"></span></div>
+          <div class="info-row"><strong>RG:</strong> <span class="p-rg"></span></div>
+        </div>
+
+        <table class="print-table">
+          <thead>
+            <tr>
+              <th style="width: 15%;">QUANT.</th>
+              <th>DISCRIMINAÇÃO</th>
+            </tr>
+          </thead>
+          <tbody class="p-itens-montagem">
+            <!-- Linhas inseridas via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="termo-garantia">
+          - Até 10 dias para montagem, não nos responsabilizamos por danos causados a superfície com defeito de (pedra fofa).<br>
+          - A garantia das peças em vidro é só durante a montagem.<br>
+          - A garantia dos acessórios é do fabricante.
+        </div>
+        <div class="assinaturas">
+          <div class="line-ass">Ass. Empresa</div>
+          <div class="line-ass">Ass. Cliente</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIA 2: CLIENTE / FINANCEIRO (COMPLETA COM VALORES E CPF) -->
+    <div class="via">
+      <div>
+        <div class="header-via">
+          <div>
+            <div class="logo-title">Belo VIDRO</div>
+            <div class="sub-header">Qualidade e requinte com o menor preço</div>
+            <div class="sub-header">São José do Belmonte - PE</div>
+          </div>
+          <div class="pedido-info">
+            <div style="font-size: 11px; font-weight: bold;">VIA CLIENTE</div>
+            <div class="pedido-num">PEDIDO Nº <span class="p-num">0000</span></div>
+            <div>Data: <span class="p-data"></span></div>
+          </div>
+        </div>
+
+        <div class="cliente-info">
+          <div class="info-row info-full"><strong>Nome:</strong> <span class="p-nome"></span></div>
+          <div class="info-row"><strong>Fone:</strong> <span class="p-fone"></span></div>
+          <div class="info-row"><strong>D/N:</strong> <span class="p-dn"></span></div>
+          <div class="info-row info-full"><strong>End.:</strong> <span class="p-end"></span></div>
+          <div class="info-row"><strong>CPF:</strong> <span class="p-cpf"></span></div>
+          <div class="info-row"><strong>RG:</strong> <span class="p-rg"></span></div>
+        </div>
+
+        <table class="print-table">
+          <thead>
+            <tr>
+              <th style="width: 12%;">QUANT.</th>
+              <th>DISCRIMINAÇÃO</th>
+              <th style="width: 20%;">P. UNIT</th>
+              <th style="width: 20%;">P. TOTAL</th>
+            </tr>
+          </thead>
+          <tbody class="p-itens-cliente">
+            <!-- Linhas inseridas via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="totais-box">
+          <table class="totais-table">
+            <tr>
+              <td>SUBTOTAL</td>
+              <td style="text-align: right;" class="p-subtotal">R$ 0,00</td>
+            </tr>
+            <tr>
+              <td>DESCONTO</td>
+              <td style="text-align: right;" class="p-desconto">R$ 0,00</td>
+            </tr>
+            <tr>
+              <td>TOTAL R$</td>
+              <td style="text-align: right; font-size: 12px;" class="p-total">R$ 0,00</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="termo-garantia">
+          - Até 10 dias para montagem, não nos responsabilizamos por danos causados a superfície com defeito de (pedra fofa).<br>
+          - A garantia das peças em vidro é só durante a montagem.<br>
+          - A garantia dos acessórios é do fabricante.
+        </div>
+        <div class="assinaturas">
+          <div class="line-ass">Ass. Empresa</div>
+          <div class="line-ass">Ass. Cliente</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SCRIPT EM JAVASCRIPT -->
+  <script>
+    // Define a data atual por padrão
+    document.getElementById('dataPedido').valueAsDate = new Date();
+
+    function adicionarLinha() {
+      const tbody = document.getElementById('itens-body');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="number" class="item-quant" value="1" oninput="calcularTotais()"></td>
+        <td><input type="text" class="item-disc" placeholder="Descrição do item/vidro"></td>
+        <td><input type="number" step="0.01" class="item-unit" value="0.00" oninput="calcularTotais()"></td>
+        <td><input type="number" step="0.01" class="item-total" value="0.00" readonly></td>
+        <td><button class="btn btn-remove" onclick="removerLinha(this)">X</button></td>
+      `;
+      tbody.appendChild(tr);
+    }
+
+    function removerLinha(btn) {
+      btn.closest('tr').remove();
+      calcularTotais();
+    }
+
+    function calcularTotais() {
+      const quants = document.querySelectorAll('.item-quant');
+      const units = document.querySelectorAll('.item-unit');
+      const totals = document.querySelectorAll('.item-total');
+
+      let subtotal = 0;
+
+      quants.forEach((qInput, i) => {
+        const q = parseFloat(qInput.value) || 0;
+        const u = parseFloat(units[i].value) || 0;
+        const totalItem = q * u;
+        totals[i].value = totalItem.toFixed(2);
+        subtotal += totalItem;
+      });
+
+      const desc = parseFloat(document.getElementById('desconto').value) || 0;
+      const totalFinal = subtotal - desc;
+
+      document.getElementById('subtotal').value = `R$ ${subtotal.toFixed(2)}`;
+      document.getElementById('totalFinal').value = `R$ ${totalFinal.toFixed(2)}`;
+    }
+
+    function processarPedido() {
+      // 1. Preencher os dados na área de impressão
+      const num = document.getElementById('numPedido').value;
+      const dataRaw = document.getElementById('dataPedido').value;
+      const dataFormat = dataRaw ? dataRaw.split('-').reverse().join('/') : '';
+
+      document.querySelectorAll('.p-num').forEach(e => e.innerText = num);
+      document.querySelectorAll('.p-data').forEach(e => e.innerText = dataFormat);
+      document.querySelectorAll('.p-nome').forEach(e => e.innerText = document.getElementById('nomeCliente').value);
+      document.querySelectorAll('.p-fone').forEach(e => e.innerText = document.getElementById('foneCliente').value);
+      document.querySelectorAll('.p-end').forEach(e => e.innerText = document.getElementById('endCliente').value);
+      document.querySelectorAll('.p-cpf').forEach(e => e.innerText = document.getElementById('cpfCliente').value);
+      document.querySelectorAll('.p-rg').forEach(e => e.innerText = document.getElementById('rgCliente').value);
+      document.querySelectorAll('.p-dn').forEach(e => e.innerText = document.getElementById('dnCliente').value);
+
+      // Preencher tabelas de itens nas duas vias
+      const tbodyMontagem = document.querySelector('.p-itens-montagem');
+      const tbodyCliente = document.querySelector('.p-itens-cliente');
+      tbodyMontagem.innerHTML = '';
+      tbodyCliente.innerHTML = '';
+
+      const quants = document.querySelectorAll('.item-quant');
+      const discs = document.querySelectorAll('.item-disc');
+      const units = document.querySelectorAll('.item-unit');
+      const totals = document.querySelectorAll('.item-total');
+
+      quants.forEach((qInput, i) => {
+        const q = qInput.value;
+        const d = discs[i].value;
+        const u = parseFloat(units[i].value || 0).toFixed(2);
+        const t = parseFloat(totals[i].value || 0).toFixed(2);
+
+        // Via Montagem (Sem valores)
+        tbodyMontagem.innerHTML += `
+          <tr>
+            <td style="text-align: center;">${q}</td>
+            <td>${d}</td>
+          </tr>
+        `;
+
+        // Via Cliente (Com valores)
+        tbodyCliente.innerHTML += `
+          <tr>
+            <td style="text-align: center;">${q}</td>
+            <td>${d}</td>
+            <td style="text-align: right;">R$ ${u}</td>
+            <td style="text-align: right;">R$ ${t}</td>
+          </tr>
+        `;
+      });
+
+      // Preencher totais
+      document.querySelector('.p-subtotal').innerText = document.getElementById('subtotal').value;
+      document.querySelector('.p-desconto').innerText = `R$ ${parseFloat(document.getElementById('desconto').value || 0).toFixed(2)}`;
+      document.querySelector('.p-total').innerText = document.getElementById('totalFinal').value;
+
+      // 2. Enviar dados para o Google Sheets / Drive (Opcional - Script no Webhook)
+      salvarNoGoogleSheets();
+
+      // 3. Chamar a impressão da página
+      window.print();
+    }
+
+    function salvarNoGoogleSheets() {
+  const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzaN0rqk_jF1Aj0_Ho-r1TaJY4OOorFtyOOtjxH6iRdxfILti9PjU3jZFvFtR0MAdVt/exec";
+
+  // Monta a lista de itens
+  const quants = document.querySelectorAll('.item-quant');
+  const discs = document.querySelectorAll('.item-disc');
+  const units = document.querySelectorAll('.item-unit');
+  const totals = document.querySelectorAll('.item-total');
+
+  let itensArray = [];
+  quants.forEach((qInput, i) => {
+    itensArray.push({
+      quantidade: qInput.value,
+      discriminacao: discs[i].value,
+      valorUnitario: units[i].value,
+      valorTotal: totals[i].value
+    });
+  });
+
+  // Monta o objeto com todas as informações
+  const payload = {
+    numPedido: document.getElementById('numPedido').value,
+    dataPedido: document.getElementById('dataPedido').value,
+    nomeCliente: document.getElementById('nomeCliente').value,
+    foneCliente: document.getElementById('foneCliente').value,
+    endCliente: document.getElementById('endCliente').value,
+    cpfCliente: document.getElementById('cpfCliente').value,
+    rgCliente: document.getElementById('rgCliente').value,
+    dnCliente: document.getElementById('dnCliente').value,
+    subtotal: document.getElementById('subtotal').value,
+    desconto: document.getElementById('desconto').value,
+    totalFinal: document.getElementById('totalFinal').value,
+    itens: itensArray
+  };
+
+  // Envia via POST para a planilha
+  fetch(WEBHOOK_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  }).then(() => {
+    console.log("Pedido gravado na planilha com sucesso!");
+  }).catch(err => {
+    console.error("Erro ao salvar no Google Sheets:", err);
+  });
+}''
+  </script>
 </body>
 </html>
